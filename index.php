@@ -14,7 +14,7 @@ session_start();?>
     <!-- main CSs -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <title>Hello, world!</title>
+    <title>Login | Register System</title>
 </head>
 <body style="background-image:url('assets/images/pexels-pixabay-531880.jpg');
     height: 100%;
@@ -25,7 +25,7 @@ session_start();?>
 <?php
     if (isset($_SESSION['email'])) {?>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a  style="font-family: 'Piedra', cursive" class="navbar-brand" href="home.php">Website Name</a>
+      <a  style="font-family: 'Piedra', cursive" class="navbar-brand" href="index.php">Website Name</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>

@@ -39,7 +39,7 @@ if(isset($_SESSION['email']))
                 echo $_POST['lname'] ?>" type="text" placeholder="Enter Last name" class="form-control" name="lname">
         </div>
         <div class="form-group">
-            <input type="email" value="<?php if(isset($_POST['email']))
+            <input type="text" value="<?php if(isset($_POST['email']))
                 echo $_POST['email'] ?>" placeholder="Enter Email"  class="form-control" name="email">
         </div>
 
@@ -59,56 +59,14 @@ if(isset($_SESSION['email']))
     </div>
     <div class="col-md-6 offset-md-3">
         <?php
-        if(isset($_POST['reg_btn']))
-        {
-            $fname=trim($_POST['fname']);
-            $lname=trim($_POST['lname']);
-            $email=trim($_POST['email']);
-            $pass=$_POST['pass'];
-            if(!empty($fname)&&!empty($lname)&&!empty($email)&&!empty($pass))
-            {
-                if(ValidEmail($email))
-                {
-                    if(ifExist('users','email',$email)==false)
-                    {
-                        if(VaildUserName($fname))
-                        {
-                            if(VaildUserName($lname))
-                            {
-                                if(VaildPass($pass))
-                                {
-                                    $newpass=md5($pass);
-                                    $query = "insert into users (`first_name`,`last_name`,`email`,`password`) values ('$fname','$lname','$email','$newpass')";
-                                    $res = db_insert($query);
-                                    if ($res)
-                                        header('location:login.php');
-                                    else
-                                        $error_message= "Failed to Create Account";
-                                }
-                                else
-                                    $error_message= "
-                                                    <ul class='text-left'>
-                                                    <li>Password should include at least 8 characters.</li>
-                                                    <li>Should include uppercase letters.</li>
-                                                    <li>Should include  numbers.</li>
-                                                    <li>Should include Special characters.</li>
-                                                    </ul>";
-                            }
-                            else
-                                $error_message='Please, Enter valid Last name';
-                        }
-                        else
-                            $error_message='Please, Enter valid first name ';
-                    }
-                    else
-                        $error_message='Email is already exist ';
-                }
-                else
-                    $error_message='Enter Valid Email';
-            }
-            else
-                $error_message='Fields is empty';
-            require_once 'function/message.php';
+        if(isset($_POST['reg_btn'])) {
+            $data = [];
+            $data['fname'] = trim($_POST['fname']);
+            $data['lname'] = trim($_POST['lname']);
+            $data['email'] = trim($_POST['email']);
+            $data['pass'] = $_POST['pass'];
+            $user = new Users;
+            $user->register($data);
         }
 
         ?>

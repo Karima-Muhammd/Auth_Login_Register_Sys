@@ -1,4 +1,4 @@
 <?php
 session_start();
-require_once 'function/db.php';
-require_once 'function/validate.php';
+require_once 'db.php';
+require_once 'Users.php';

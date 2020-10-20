@@ -66,42 +66,11 @@ if(isset($_SESSION['email']))
 
             if(isset($_POST['login_btn']))
             {
-                $email=$_POST['email'];
-                $pass=$_POST['password'];
-                if(IsNotEmpty($email))
-                {
-                    if(IsNotEmpty($pass))
-                    {
-                        if(ValidEmail($email))
-                        {
-                            if(ifExist('users','email',$email))
-                            {
-                                $query="select * from users where email='$email'";
-                                $data=SelectRow($query);
-                                $new_pass=md5($pass);
-                                if($new_pass==$data['password'])
-                                {
-                                    $_SESSION['email']=$email;
-                                    $_SESSION['fname']=$data['first_name'];
-                                    $_SESSION['lname']=$data['last_name'];
-                                    header('location:index.php');
-                                }
-                                else
-                                    $error_message = "This Password is Not Correct";
-                            }
-                            else
-                                $error_message = "This Email Not Exist";
-                        }
-                        else
-                            $error_message = "Please ,Enter valid Email";
-                    }
-                    else
-                        $error_message = "Password is Required";
-
-                }
-                else
-                    $error_message='Email is required';
-                require_once 'function/message.php';
+                $data=[];
+                $data['email']=$_POST['email'];
+                $data['pass']=$_POST['password'];
+                $user=new Users();
+                $user->login($data);
             }
             ?>
         </div>
