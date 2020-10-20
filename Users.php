@@ -52,7 +52,7 @@ class Users extends db
         $pass=$data['pass'];
         if(!empty($fname)&&!empty($lname)&&!empty($email)&&!empty($pass))
         {
-            if(ValidEmail($email))
+            if($this->ValidEmail($email))
             {
                 if($this->ifExist('users','email',$email)==false)
                 {
