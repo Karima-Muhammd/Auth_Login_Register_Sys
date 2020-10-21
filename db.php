@@ -6,7 +6,7 @@ class db
     public $conn;
     public function __construct()
     {
-        $this->conn=mysqli_connect('localhost:99','rhoot','',"login_register_system");
+        $this->conn=mysqli_connect('localhost','root','',"login_register_system");
         if(!$this->conn)
         {
             header('Location:DB_Error.php');
